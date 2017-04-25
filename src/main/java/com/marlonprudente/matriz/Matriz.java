@@ -107,10 +107,10 @@ public class Matriz {
         Double[][] nm = matrix;
         Double[] x = {0.0, 0.0, 0.0};
         Double soma, t, e;
-        Integer max;
+        
 
         for (int r = 0; r < imax; r++) {
-            max = 0;
+            
             for (int i = 0; i < 3; i++) {
                 soma = 0.0;
                 for (int j = 0; j < 3; j++) {
@@ -119,6 +119,9 @@ public class Matriz {
                     }
                     t = (nm[i][3] - soma) / nm[i][i];
                     e = Math.abs(x[i] - t);
+                    if(e<es){
+                        r = imax;
+                    }
                     x[i] = t;
                 }
             }
