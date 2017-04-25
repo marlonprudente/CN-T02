@@ -62,49 +62,71 @@ public class Matriz {
         x[2] = nm[2][3] / nm[2][2];
         for (int i = 2; i > -1; i--) {
             soma = 0.0;
-            
+
             for (int j = (i + 1); j < 3; j++) {
                 soma = soma + nm[i][j] * x[j];
-                               x[i] = (nm[i][3] - soma) / nm[i][i]; 
+                x[i] = (nm[i][3] - soma) / nm[i][i];
             }
-            
+
         }
 
-
-            System.out.println("X" + " = " + x[0]);
-            System.out.println("Y" + " = " + x[1]);
-            System.out.println("Z" + " = " + x[2]);
+        System.out.println("X" + " = " + x[0]);
+        System.out.println("Y" + " = " + x[1]);
+        System.out.println("Z" + " = " + x[2]);
 
     }
 
     public void gaussJordan() {
-        
+
         Double[][] nm = matrix;
         Double[] x = {0.0, 0.0, 0.0};
-        for(int k = 0; k< 3; k++){
-            for(int l = k+1; l < 4; l++){
-                nm[k][l] = nm[k][l]/nm[k][k];
+        for (int k = 0; k < 3; k++) {
+            for (int l = k + 1; l < 4; l++) {
+                nm[k][l] = nm[k][l] / nm[k][k];
             }
             nm[k][k] = 1.0;
-            for(int i = 0; i < 3;i++){
-                if(i!=k){
-                    for(int j = k+1; j< 4;j++ ){
-                        nm[i][j] = nm[i][j] - (nm[k][j]*nm[i][k]);
+            for (int i = 0; i < 3; i++) {
+                if (i != k) {
+                    for (int j = k + 1; j < 4; j++) {
+                        nm[i][j] = nm[i][j] - (nm[k][j] * nm[i][k]);
                     }
                 }
             }
         }
-        
-        
-        for(int m = 0; m<3;m++){
+
+        for (int m = 0; m < 3; m++) {
             x[m] = nm[m][3];
         }
-            System.out.println("X" + " = " + x[0]);
-            System.out.println("Y" + " = " + x[1]);
-            System.out.println("Z" + " = " + x[2]);
+        System.out.println("X" + " = " + x[0]);
+        System.out.println("Y" + " = " + x[1]);
+        System.out.println("Z" + " = " + x[2]);
     }
 
-    public void gaussSeidel(Float es, Integer imax) {
+    public void gaussSeidel(Double es, Integer imax) {
+
+        Double[][] nm = matrix;
+        Double[] x = {0.0, 0.0, 0.0};
+        Double soma, t, e;
+        Integer max;
+
+        for (int r = 0; r < imax; r++) {
+            max = 0;
+            for (int i = 0; i < 3; i++) {
+                soma = 0.0;
+                for (int j = 0; j < 3; j++) {
+                    if (j != i) {
+                        soma = soma + nm[i][j] * x[j];
+                    }
+                    t = (nm[i][3] - soma) / nm[i][i];
+                    e = Math.abs(x[i] - t);
+                    x[i] = t;
+                }
+            }
+        }
+
+        System.out.println("X" + " = " + x[0]);
+        System.out.println("Y" + " = " + x[1]);
+        System.out.println("Z" + " = " + x[2]);
 
     }
 

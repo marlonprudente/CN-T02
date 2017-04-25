@@ -20,15 +20,24 @@ public class Main {
         //Double[][] ma1 = {{0.5, -1.0, 1.0, 6.0}, {3.0, 2.0, 1.0, 8.0}, {5.0, -1.0, -3.0, -1.0}};
         m1.matrix = ma1;
         m1.getMatriz();
-        System.out.println("GI---");
+        System.out.println("M1=>GI---");
         m1.gaussIngenuo();
-        System.out.println("GJ---");
+        System.out.println("M1=>GJ---");
         m1.gaussJordan();
-       /* System.out.println("---");
+        System.out.println("M1=>GS---");
+        m1.gaussSeidel(0.05, 100);
+        
+        System.out.println("---");
 
         Double[][] ma2 = {{1.0, 1.0, -1.0, -3.0}, {6.0, 2.0, 2.0, 2.0}, {-3.0, 4.0, 1.0, 1.0}};
         m2.matrix = ma2;
-        m2.getMatriz();*/
+        m2.getMatriz();
+        System.out.println("M2=>GI---");
+        m1.gaussIngenuo();
+        System.out.println("M2=>GJ---");
+        m1.gaussJordan();
+        System.out.println("M2=>GS---");
+        m1.gaussSeidel(0.05, 100);
 
     }
 }
